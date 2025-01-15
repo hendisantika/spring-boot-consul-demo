@@ -2,6 +2,8 @@ package id.my.hendisantika.studentservice.controller;
 
 import id.my.hendisantika.studentservice.model.Student;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
@@ -23,7 +25,7 @@ import java.util.Map;
 @RestController
 public class StudentServiceController {
 
-    private static final Map<String, List<Student>> schoolDB = new HashMap<String, List<Student>>();
+    private static Map<String, List<Student>> schoolDB = new HashMap<String, List<Student>>();
 
     static {
         schoolDB = new HashMap<String, List<Student>>();
@@ -43,7 +45,19 @@ public class StudentServiceController {
         lst.add(std);
 
         schoolDB.put("xyzschool", lst);
+    }
 
+    @GetMapping(value = "/getStudentDetailsForSchool/{schoolname}")
+    public List<Student> getStudents(@PathVariable String schoolname) {
+        log.info("Getting Student details for {}", schoolname);
+
+        List<Student> studentList = schoolDB.get(schoolname);
+        if (studentList == null) {
+            studentList = new ArrayList<Student>();
+            Student std = new Student("Not Found", "N/A");
+            studentList.add(std);
+        }
+        return studentList;
     }
 
 }
