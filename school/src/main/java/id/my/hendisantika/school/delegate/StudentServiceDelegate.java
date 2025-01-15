@@ -1,8 +1,13 @@
 package id.my.hendisantika.school.delegate;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
+
+import java.util.Date;
 
 /**
  * Created by IntelliJ IDEA.
@@ -14,9 +19,19 @@ import org.springframework.web.client.RestTemplate;
  * Time: 06.16
  * To change this template use File | Settings | File Templates.
  */
+@Slf4j
 @Service
+@RequiredArgsConstructor
 public class StudentServiceDelegate {
-    @Autowired
-    RestTemplate restTemplate;
+    private final RestTemplate restTemplate;
+
+    public String callStudentServiceAndGetData(String schoolname) {
+        log.info("Consul Demo - Getting School details for {}", schoolname);
+        String response = restTemplate.exchange("http://student-service/getStudentDetailsForSchool/{schoolname}", HttpMethod.GET, null, new ParameterizedTypeReference<String>() {
+        }, schoolname).getBody();
+
+        log.info("Response Received as {} -  {}", response, new Date());
+        return "School Name -  " + schoolname + " :::  Student Details " + response + " -  " + new Date();
+    }
 
 }
