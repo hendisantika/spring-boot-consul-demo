@@ -12,3 +12,21 @@ Spring Boot Consul Demo
 7. Run the application: `mvn clean spring-boot:run`
 8. Open your favorite browser: http://localhost:8080/getStudentDetailsForSchool/Konoha
 9. Open your favorite browser: http://localhost:8081/getSchoolDetails/Konoha
+
+### Image Screenshot
+
+Consul Home Page
+
+![Consul Home Page](img/services.png "Consul Home Page")
+
+Student Service
+
+![Student Service](img/student1.png "Student Service")
+
+![Student Service](img/student2.png "Student Service")
+
+School Service
+
+![School Service](img/school1.png "School Service")
+
+![School Service](img/school2.png "School Service")
