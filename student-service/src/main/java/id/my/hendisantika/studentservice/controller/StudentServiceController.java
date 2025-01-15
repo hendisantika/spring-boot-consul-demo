@@ -25,26 +25,26 @@ import java.util.Map;
 @RestController
 public class StudentServiceController {
 
-    private static Map<String, List<Student>> schoolDB = new HashMap<String, List<Student>>();
+    private static Map<String, List<Student>> schoolDB = new HashMap<>();
 
     static {
-        schoolDB = new HashMap<String, List<Student>>();
+        schoolDB = new HashMap<>();
 
-        List<Student> lst = new ArrayList<Student>();
-        Student std = new Student("Sajal", "Class IV");
+        List<Student> lst = new ArrayList<>();
+        Student std = new Student("Yuji", "Class IV");
         lst.add(std);
-        std = new Student("Lokesh", "Class V");
-        lst.add(std);
-
-        schoolDB.put("abcschool", lst);
-
-        lst = new ArrayList<Student>();
-        std = new Student("Kajal", "Class III");
-        lst.add(std);
-        std = new Student("Sukesh", "Class VI");
+        std = new Student("Naobara", "Class V");
         lst.add(std);
 
-        schoolDB.put("xyzschool", lst);
+        schoolDB.put("Jujutsu Kaisen High School", lst);
+
+        lst = new ArrayList<>();
+        std = new Student("Gojo", "Class III");
+        lst.add(std);
+        std = new Student("Geto", "Class VI");
+        lst.add(std);
+
+        schoolDB.put("Konoha", lst);
     }
 
     @GetMapping(value = "/getStudentDetailsForSchool/{schoolname}")
@@ -53,7 +53,7 @@ public class StudentServiceController {
 
         List<Student> studentList = schoolDB.get(schoolname);
         if (studentList == null) {
-            studentList = new ArrayList<Student>();
+            studentList = new ArrayList<>();
             Student std = new Student("Not Found", "N/A");
             studentList.add(std);
         }
