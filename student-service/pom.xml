@@ -15,7 +15,7 @@
     <description>student-service</description>
     <properties>
         <java.version>23</java.version>
-        <spring-cloud.version>2024.0.1</spring-cloud.version>
+        <spring-cloud.version>2025.0.0</spring-cloud.version>
         <lombok.version>1.18.38</lombok.version>
         <maven-compiler-plugin.version>3.14.0</maven-compiler-plugin.version>
         <maven.compiler.proc>full</maven.compiler.proc>
